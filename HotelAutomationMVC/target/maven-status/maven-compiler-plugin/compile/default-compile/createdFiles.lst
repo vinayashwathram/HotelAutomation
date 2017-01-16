@@ -1,0 +1,8 @@
+vin\hotelAutomation\HotelAutomationMVC\model\MemberInfo.class
+vin\hotelAutomation\HotelAutomationMVC\dao\impl\MemberDaoImpl.class
+vin\hotelAutomation\HotelAutomationMVC\validator\MemberValidator.class
+vin\hotelAutomation\HotelAutomationMVC\config\ApplicationContextConfig.class
+vin\hotelAutomation\HotelAutomationMVC\controller\MainController.class
+vin\hotelAutomation\HotelAutomationMVC\config\WebMvcConfig.class
+vin\hotelAutomation\HotelAutomationMVC\dao\MemberDao.class
+vin\hotelAutomation\HotelAutomationMVC\entity\Member.class
