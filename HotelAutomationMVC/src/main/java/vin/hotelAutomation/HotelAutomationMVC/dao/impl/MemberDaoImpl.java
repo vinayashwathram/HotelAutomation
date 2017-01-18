@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
  
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,7 +21,12 @@ public class MemberDaoImpl implements MemberDao {
     private SessionFactory sessionFactory;
  
     public Member findMember(String userName) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session;// = sessionFactory.getCurrentSession();
+        try {
+            session = sessionFactory.getCurrentSession();
+        } catch (HibernateException e) {
+            session = sessionFactory.openSession();
+        }
         Criteria crit = session.createCriteria(Member.class);
         crit.add(Restrictions.eq("id", userName));
         return (Member) crit.uniqueResult();
@@ -39,7 +45,12 @@ public class MemberDaoImpl implements MemberDao {
         String sql = "Select new " + MemberInfo.class.getName()//
                 + "(a.userName, a.firstName, a.lastName,a.age, a.email, a.gender) "//
                 + " from " + Member.class.getName() + " a ";
-        Session session = sessionFactory.getCurrentSession();
+        Session session; // = sessionFactory.getCurrentSession();
+        try {
+            session = sessionFactory.getCurrentSession();
+        } catch (HibernateException e) {
+            session = sessionFactory.openSession();
+        }
         Query query = session.createQuery(sql);
         return query.list();
     }
@@ -70,7 +81,12 @@ public class MemberDaoImpl implements MemberDao {
         //
  
         if (isNew) {
-            Session session = this.sessionFactory.getCurrentSession();
+            Session session; // = this.sessionFactory.getCurrentSession();
+            try {
+                session = this.sessionFactory.getCurrentSession();
+            } catch (HibernateException e) {
+                session = this.sessionFactory.openSession();
+            }
             session.persist(member);
         }
     }

@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 import vin.hotelAutomation.HotelAutomationMVC.dao.MemberDao;
+import vin.hotelAutomation.HotelAutomationMVC.dao.UserRoleDao;
 import vin.hotelAutomation.HotelAutomationMVC.model.LoginInfo;
 import vin.hotelAutomation.HotelAutomationMVC.model.MemberInfo;
+import vin.hotelAutomation.HotelAutomationMVC.model.UserRoleInfo;
 import vin.hotelAutomation.HotelAutomationMVC.service.LoginService;
 import vin.hotelAutomation.HotelAutomationMVC.validator.MemberValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,9 @@ public class MainController {
 
 	@Autowired
 	private MemberDao memberDAO;
+	
+	@Autowired
+	private UserRoleDao userRoleDAO;
 
 	@Autowired
 	private MemberValidator memberValidator;
@@ -176,6 +181,7 @@ public class MainController {
 		}
 
 		this.memberDAO.saveMember(memberInfo);
+		this.userRoleDAO.saveUserRole(new UserRoleInfo(memberInfo.getUserName(), "USER"));
 
 		// Important!!: Need @EnableWebMvc
 		// Add message to flash scope

@@ -1,41 +1,39 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
-<!DOCTYPE html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ 
 <html>
-<head>
-<title>${title}</title>
-</head>
+<head><title>Login</title></head>
 <body>
-
-	<h1>Message : ${message}</h1>
-
-	<form:form action="checkLogin" method="POST"
-		modelAttribute="memberForm">
-
-		
-
-		<table>
-			<tr>
-				<td>User Name</td>
-				<td><form:input path="userName" /></td>
-				<td><form:errors path="userName" class="error-message" /></td>
-			</tr>
-			<tr>
-				<td>Password</td>
-				<td><form:input type="password" path="password" /></td>
-				<td><form:errors path="password" class="error-message" /></td>
-			</tr>
-
-			<tr>
-				<td>&nbsp;</td>
-				<td><input type="submit" value="Submit" />
-				<td>&nbsp;</td>
-			</tr>
-		</table>
-	</form:form>
-
+   <jsp:include page="_menu.jsp" />
+    
+    
+   <h1>Login</h1>
+     
+     <!-- /login?error=true -->
+     <c:if test="${param.error == 'true'}">
+         <div style="color:red;margin:10px 0px;">
+          
+                Login Failed!!!<br />
+                Reason :  ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+                 
+         </div>
+    </c:if>
+       
+   <h3>Enter user name and password:</h3>  
+     
+   <form name='f' action="${pageContext.request.contextPath}/j_spring_security_check" method='POST'>
+      <table>
+         <tr>
+            <td>User:</td>
+            <td><input type='text' name='username' value=''></td>
+         </tr>
+         <tr>
+            <td>Password:</td>
+            <td><input type='password' name='password' /></td>
+         </tr>
+         <tr>
+            <td><input name="submit" type="submit" value="submit" /></td>
+         </tr>
+      </table>
+  </form>
 </body>
 </html>

@@ -6,19 +6,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Create Member</title>
-<style>
-.error-message {
-	color: red;
-	font-size: 90%;
-	font-style: italic;
-}
-</style>
+<title>${title}</title>
 </head>
 <body>
 
-	<h3>${formTitle}</h3>
+	<h1>Message : ${message}</h1>
 
 	<form:form action="checkLogin" method="POST"
 		modelAttribute="memberForm">

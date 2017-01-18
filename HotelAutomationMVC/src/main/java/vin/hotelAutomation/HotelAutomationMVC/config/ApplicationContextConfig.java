@@ -5,7 +5,10 @@ import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
 import vin.hotelAutomation.HotelAutomationMVC.dao.MemberDao;
+import vin.hotelAutomation.HotelAutomationMVC.dao.UserRoleDao;
 import vin.hotelAutomation.HotelAutomationMVC.dao.impl.MemberDaoImpl;
+import vin.hotelAutomation.HotelAutomationMVC.dao.impl.UserRoleDaoImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -94,6 +97,11 @@ public HibernateTransactionManager getTransactionManager(SessionFactory sessionF
 @Bean(name = "memberDao")
 public MemberDao getMemberDao() {
     return new MemberDaoImpl();
+}
+
+@Bean(name = "userRoleDao")
+public UserRoleDao getuserRoleDao() {
+    return new UserRoleDaoImpl();
 }
 
 }
